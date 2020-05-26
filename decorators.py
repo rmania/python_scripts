@@ -6,14 +6,18 @@
 from functools import wraps
 log_path = 'logs/'
 
+# this is a good boilerplate template for building all kinds of decorators:
+def decorator(func):
+    @functools.wraps(func)
+    def wrapper_decorator(*args, **kwargs):
+        # Do something before
+        value = func(*args, **kwargs)
+        # Do something after
+        return value
+    return wrapper_decorator
 
-def outer_function(msg):
-    def inner_function():
-        print(msg)
-    return inner_function
 
-
-# example how to add arguments to the decorator:
+# example how to add arguments to the decorator (basically adding nested layers)
 def prefix_decorator(prefix):
     def decorator_function(original_function):
         def wrapper_function(*args, **kwargs):
@@ -67,7 +71,6 @@ def my_timer(orig_func):
 
     return wrapper
 
-
 # @my_logger
 # @my_timer
 @prefix_decorator('LOG:')
@@ -76,3 +79,51 @@ def display_info(name, age):
 
 
 display_info("diederik", 41)
+
+
+# other decorator: s low_down function (f.i. when calling API's)
+def slow_down(func):
+    import time
+    @wraps(func)
+    def wrapper_slow_down(*args, **kwargs):
+        time.sleep(1)
+        return func(*args, **kwargs)
+    return wrapper_slow_down
+
+@slow_down
+def count_down(from_number):
+    if from_number < 1:
+        print("too low")
+    else:
+        print(from_number)
+        count_down(from_number - 1)
+
+count_down(5)
+
+
+# Registering Plugins
+# Decorators don’t have to wrap the function they’re decorating. They can also
+# simply register that a function exists and return it unwrapped.
+# This can be used, for instance, to create a light-weight plug-in architecture:
+import random
+PLUGINS = dict()
+
+def register(func):
+    """Register a function as a plug-in"""
+    PLUGINS[func.__name__] = func
+    return func
+
+@register
+def say_hello(name):
+    return f"Hello {name}"
+
+@register
+def be_awesome(name):
+    return f"Yo {name}, together we are the awesomest!"
+
+def randomly_greet(name):
+    greeter, greeter_func = random.choice(list(PLUGINS.items()))
+    print(f"Using {greeter!r}")
+    return greeter_func(name)
+
+randomly_greet("Alice")
