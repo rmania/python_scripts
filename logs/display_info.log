@@ -1,0 +1,6 @@
+INFO:root:Ran with args: ('john', 35), and kwargs: {}
+INFO:root:Ran with args: ('diederik', 41), and kwargs: {}
+15:15:29 — root — INFO —wrapper:44 — Ran with args: ('diederik', 41), and kwargs: {}
+2020-05-26 15:16:50 — root — INFO —wrapper:44 — Ran with args: ('diederik', 41), and kwargs: {}
+2020-05-26 15:27:57 — root — INFO —wrapper:45 — Ran with args: ('diederik', 41), and kwargs: {}
+2020-05-26 15:28:10 — root — INFO —wrapper:45 — Ran with args: ('diederik', 41), and kwargs: {}
