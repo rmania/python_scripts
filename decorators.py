@@ -1,6 +1,8 @@
 # some decorator functionality. Decorators add functionality to existing functions
 # bu adding that functionality to the wrapper function.
-import time
+# link to the video:
+# https://www.youtube.com/watch?v=FsAPt_9Bf3U&list=PL-osiE80TeTt2d9bfVyTiXJA-UTHn6WwU&index=37
+
 from functools import wraps
 log_path = 'logs/'
 
