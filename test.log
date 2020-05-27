@@ -1,0 +1,14 @@
+2020-05-27 21:07:01,611:INFO:Add: 20 + 10 = 3049
+2020-05-27 21:07:01,611:INFO:Sub: 20 - 10 = 1052
+2020-05-27 21:07:01,611:INFO:Mul: 20 * 10 = 20055
+2020-05-27 21:07:01,611:INFO:Div: 20 / 10 = 2.058
+2020-05-27 21:15:35,177:ERROR:Tried to divide by zero46
+Traceback (most recent call last):
+  File "/home/diederik/projects/python_scripts/logging_methods.py", line 44, in divide
+    result = x / y
+ZeroDivisionError: division by zero
+2020-05-27 21:17:43,126:ERROR:Tried to divide by zero50
+Traceback (most recent call last):
+  File "/home/diederik/projects/python_scripts/logging_methods.py", line 48, in divide
+    result = x / y
+ZeroDivisionError: division by zero

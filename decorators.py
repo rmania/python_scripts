@@ -44,14 +44,14 @@ def display():
 
 #######
 def my_logger(orig_func):
-    import logging
-    logging.basicConfig(filename=log_path + f'{orig_func.__name__}.log',
-                        level=logging.INFO,
-                        format="%(asctime)s — %(name)s — %(levelname)s —" "%(funcName)s:%(lineno)d — %(message)s",
-                        datefmt="%Y-%m-%d %H:%M:%S")
+    import logging_methods
+    logging_methods.basicConfig(filename=log_path + f'{orig_func.__name__}.log',
+                                level=logging_methods.INFO,
+                                format="%(asctime)s — %(name)s — %(levelname)s —" "%(funcName)s:%(lineno)d — %(message)s",
+                                datefmt="%Y-%m-%d %H:%M:%S")
     @wraps(orig_func)
     def wrapper(*args, **kwargs):
-        logging.info(
+        logging_methods.info(
             f'Ran with args: {args}, and kwargs: {kwargs}')
         return orig_func(*args, **kwargs)
 
